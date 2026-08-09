@@ -1,39 +1,24 @@
-import {
-  useState,
-  type FormEvent,
-} from 'react';
+import { useState, type FormEvent } from "react";
 
-import { Navigate } from 'react-router';
+import { Navigate } from "react-router";
 
-import { useAuth } from '../features/auth/AuthContext';
+import { useAuth } from "../features/auth/AuthContext";
 
 export function LoginPage() {
-  const {
-    login,
-    isAuthenticated,
-  } = useAuth();
+  const { login, isAuthenticated } = useAuth();
 
-  const [email, setEmail] = useState('');
-  const [senha, setSenha] = useState('');
+  const [email, setEmail] = useState("");
+  const [senha, setSenha] = useState("");
 
-  const [error, setError] =
-    useState<string | null>(null);
+  const [error, setError] = useState<string | null>(null);
 
-  const [isSubmitting, setIsSubmitting] =
-    useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   if (isAuthenticated) {
-    return (
-      <Navigate
-        to="/pacientes"
-        replace
-      />
-    );
+    return <Navigate to="/pacientes" replace />;
   }
 
-  async function handleSubmit(
-    event: FormEvent<HTMLFormElement>,
-  ) {
+  async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
 
     setError(null);
@@ -45,9 +30,7 @@ export function LoginPage() {
         senha,
       });
     } catch {
-      setError(
-        'Não foi possível realizar o login. Verifique as credenciais.',
-      );
+      setError("Não foi possível realizar o login. Verifique as credenciais.");
     } finally {
       setIsSubmitting(false);
     }
@@ -55,24 +38,20 @@ export function LoginPage() {
 
   return (
     <div className="auth-page">
-      <form
-        className="auth-card"
-        onSubmit={handleSubmit}
-      >
-        <span className="eyebrow">
+      <form className="auth-card" onSubmit={handleSubmit}>
+        <span className="eyebrow" data-testid="login-title">
           Clínica Médica
         </span>
 
-        <h1>Entrar no sistema</h1>
+        <h1 data-testid="login-subtitle">Entrar no sistema</h1>
 
         <label>
           E-mail
           <input
             type="email"
             value={email}
-            onChange={(event) =>
-              setEmail(event.target.value)
-            }
+            data-testid="login-email"
+            onChange={(event) => setEmail(event.target.value)}
             required
           />
         </label>
@@ -82,26 +61,24 @@ export function LoginPage() {
           <input
             type="password"
             value={senha}
-            onChange={(event) =>
-              setSenha(event.target.value)
-            }
+            data-testid="login-password"
+            onChange={(event) => setSenha(event.target.value)}
             required
           />
         </label>
 
         {error && (
-          <div className="form-error">
+          <div className="form-error" data-testid="login-form-error">
             {error}
           </div>
         )}
 
         <button
           type="submit"
+          data-testid="login-submit"
           disabled={isSubmitting}
         >
-          {isSubmitting
-            ? 'Entrando...'
-            : 'Entrar'}
+          {isSubmitting ? "Entrando..." : "Entrar"}
         </button>
       </form>
     </div>
