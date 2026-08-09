@@ -1,0 +1,226 @@
+import {
+  Link,
+  useParams,
+} from 'react-router';
+
+import {
+  PatientStatusBadge,
+} from '../features/patients/components/PatientStatusBadge';
+
+import {
+  useActivatePatient,
+  useDeactivatePatient,
+  usePatient,
+} from '../features/patients/hooks/patientQueries';
+
+export function PatientDetailsPage() {
+  const params = useParams();
+
+  const patientId =
+    Number(params.id);
+
+  const patientQuery =
+    usePatient(patientId);
+
+  const activateMutation =
+    useActivatePatient();
+
+  const deactivateMutation =
+    useDeactivatePatient();
+
+  if (patientQuery.isPending) {
+    return (
+      <div className="page-container">
+        Carregando paciente...
+      </div>
+    );
+  }
+
+  if (
+    patientQuery.isError ||
+    !patientQuery.data
+  ) {
+    return (
+      <div className="page-container">
+        <div className="form-error">
+          Paciente não encontrado.
+        </div>
+      </div>
+    );
+  }
+
+  const patient =
+    patientQuery.data;
+
+  async function changeStatus() {
+    if (patient.ativo) {
+      const confirmed =
+        window.confirm(
+          'Deseja realmente desativar este paciente?',
+        );
+
+      if (!confirmed) {
+        return;
+      }
+
+      await deactivateMutation
+        .mutateAsync(patient.id);
+    } else {
+      await activateMutation
+        .mutateAsync(patient.id);
+    }
+
+    await patientQuery.refetch();
+  }
+
+  return (
+    <div className="page-container">
+      <Link to="/pacientes">
+        ← Voltar para pacientes
+      </Link>
+
+      <div className="page-header">
+        <div>
+          <span className="eyebrow">
+            Paciente #{patient.id}
+          </span>
+
+          <h1>
+            {patient.nomeCompleto}
+          </h1>
+
+          <PatientStatusBadge
+            active={patient.ativo}
+          />
+        </div>
+
+        <div className="header-actions">
+          <Link
+            className="secondary-link"
+            to={`/pacientes/${patient.id}/editar`}
+          >
+            Editar
+          </Link>
+
+          <button
+            type="button"
+            className={
+              patient.ativo
+                ? 'danger-button'
+                : 'primary-button'
+            }
+            onClick={() =>
+              void changeStatus()
+            }
+          >
+            {patient.ativo
+              ? 'Desativar'
+              : 'Ativar'}
+          </button>
+        </div>
+      </div>
+
+      <div className="details-grid">
+        <section className="details-card">
+          <h2>Dados pessoais</h2>
+
+          <dl>
+            <dt>CPF</dt>
+            <dd>{patient.cpf}</dd>
+
+            <dt>Data de nascimento</dt>
+            <dd>
+              {patient.dataNascimento}
+            </dd>
+
+            <dt>Sexo</dt>
+            <dd>
+              {patient.sexo ??
+                'Não informado'}
+            </dd>
+
+            <dt>Nome da mãe</dt>
+            <dd>
+              {patient.nomeMae ??
+                'Não informado'}
+            </dd>
+          </dl>
+        </section>
+
+        <section className="details-card">
+          <h2>Contato</h2>
+
+          <dl>
+            <dt>Telefone</dt>
+            <dd>
+              {patient.telefone}
+            </dd>
+
+            <dt>
+              Telefone secundário
+            </dt>
+            <dd>
+              {patient.telefoneSecundario ??
+                'Não informado'}
+            </dd>
+
+            <dt>E-mail</dt>
+            <dd>
+              {patient.email ??
+                'Não informado'}
+            </dd>
+          </dl>
+        </section>
+
+        <section className="details-card">
+          <h2>Endereço</h2>
+
+          <dl>
+            <dt>CEP</dt>
+            <dd>
+              {patient.endereco.cep ??
+                'Não informado'}
+            </dd>
+
+            <dt>Logradouro</dt>
+            <dd>
+              {patient.endereco
+                .logradouro ??
+                'Não informado'}
+            </dd>
+
+            <dt>Número</dt>
+            <dd>
+              {patient.endereco.numero ??
+                'Não informado'}
+            </dd>
+
+            <dt>Bairro</dt>
+            <dd>
+              {patient.endereco.bairro ??
+                'Não informado'}
+            </dd>
+
+            <dt>Cidade / UF</dt>
+            <dd>
+              {patient.endereco.cidade ??
+                '-'}
+              {' / '}
+              {patient.endereco.estado ??
+                '-'}
+            </dd>
+          </dl>
+        </section>
+
+        <section className="details-card">
+          <h2>Observações</h2>
+
+          <p>
+            {patient.observacoes ??
+              'Nenhuma observação cadastrada.'}
+          </p>
+        </section>
+      </div>
+    </div>
+  );
+}
