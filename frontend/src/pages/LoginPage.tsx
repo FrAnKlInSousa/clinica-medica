@@ -1,14 +1,14 @@
-import { useState, type FormEvent } from "react";
+import { useState, type FormEvent } from 'react';
 
-import { Navigate } from "react-router";
+import { Navigate } from 'react-router';
 
-import { useAuth } from "../features/auth/AuthContext";
+import { useAuth } from '../features/auth/AuthContext';
 
 export function LoginPage() {
   const { login, isAuthenticated } = useAuth();
 
-  const [email, setEmail] = useState("");
-  const [senha, setSenha] = useState("");
+  const [email, setEmail] = useState('');
+  const [senha, setSenha] = useState('');
 
   const [error, setError] = useState<string | null>(null);
 
@@ -30,7 +30,7 @@ export function LoginPage() {
         senha,
       });
     } catch {
-      setError("Não foi possível realizar o login. Verifique as credenciais.");
+      setError('Não foi possível realizar o login. Verifique as credenciais.');
     } finally {
       setIsSubmitting(false);
     }
@@ -78,7 +78,7 @@ export function LoginPage() {
           data-testid="login-submit"
           disabled={isSubmitting}
         >
-          {isSubmitting ? "Entrando..." : "Entrar"}
+          {isSubmitting ? 'Entrando...' : 'Entrar'}
         </button>
       </form>
     </div>
