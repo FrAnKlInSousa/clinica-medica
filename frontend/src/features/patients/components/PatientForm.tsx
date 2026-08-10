@@ -131,6 +131,7 @@ export function PatientForm({
 
             <input
               {...register('nomeCompleto')}
+              data-testid="nome-completo"
             />
 
             {errors.nomeCompleto && (
@@ -145,6 +146,7 @@ export function PatientForm({
 
             <input
               {...register('cpf')}
+              data-testid="cpf"
             />
 
             {errors.cpf && (
@@ -159,6 +161,7 @@ export function PatientForm({
 
             <input
               type="date"
+              data-testid="data-nascimento"
               {...register(
                 'dataNascimento',
               )}
@@ -179,17 +182,17 @@ export function PatientForm({
             Sexo
 
             <select
-              {...register('sexo')}
+              {...register('sexo')} data-testid="sexo-select"
             >
-              <option value="NAO_INFORMADO">
+              <option value="NAO_INFORMADO" data-testid="nao-informado">
                 Não informado
               </option>
 
-              <option value="FEMININO">
+              <option value="FEMININO" data-testid="sexo-feminino">
                 Feminino
               </option>
 
-              <option value="MASCULINO">
+              <option value="MASCULINO" data-testid="sexo-masculino">
                 Masculino
               </option>
             </select>
@@ -200,6 +203,7 @@ export function PatientForm({
 
             <input
               {...register('nomeMae')}
+              data-testid="nome-mae"
             />
           </label>
         </div>
@@ -214,10 +218,11 @@ export function PatientForm({
 
             <input
               {...register('telefone')}
+              data-testid="telefone"
             />
 
             {errors.telefone && (
-              <span className="field-error">
+              <span className="field-error" data-testid="telefone-msg-erro">
                 {errors.telefone.message}
               </span>
             )}
@@ -230,6 +235,7 @@ export function PatientForm({
               {...register(
                 'telefoneSecundario',
               )}
+              data-testid="telefone-secundario"
             />
           </label>
 
@@ -259,10 +265,11 @@ export function PatientForm({
 
             <input
               {...register('cep')}
+              data-testid="cep"
             />
 
             {errors.cep && (
-              <span className="field-error">
+              <span className="field-error" data-testid="cep-msg-erro">
                 {errors.cep.message}
               </span>
             )}
@@ -273,6 +280,7 @@ export function PatientForm({
 
             <input
               maxLength={2}
+              data-testid="uf"
               {...register('estado')}
             />
           </label>
@@ -281,6 +289,7 @@ export function PatientForm({
             Logradouro
 
             <input
+            data-testid="logradouro"
               {...register('logradouro')}
             />
           </label>
@@ -289,6 +298,7 @@ export function PatientForm({
             Número
 
             <input
+            data-testid="numero-endereco"
               {...register('numero')}
             />
           </label>
@@ -297,6 +307,7 @@ export function PatientForm({
             Complemento
 
             <input
+            data-testid="complemento-endereco"
               {...register('complemento')}
             />
           </label>
@@ -305,6 +316,7 @@ export function PatientForm({
             Bairro
 
             <input
+            data-testid="bairro-endereco"
               {...register('bairro')}
             />
           </label>
@@ -313,6 +325,7 @@ export function PatientForm({
             Cidade
 
             <input
+            data-testid="cidade-endereco"
               {...register('cidade')}
             />
           </label>
@@ -324,6 +337,7 @@ export function PatientForm({
 
         <textarea
           rows={5}
+          data-testid="observacoes"
           {...register('observacoes')}
         />
       </section>
@@ -331,6 +345,7 @@ export function PatientForm({
       <div className="form-actions">
         <button
           type="submit"
+          data-testid="cadastrar-paciente"
           disabled={isSubmitting}
         >
           {isSubmitting
