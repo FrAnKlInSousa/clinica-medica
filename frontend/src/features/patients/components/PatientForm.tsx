@@ -244,11 +244,12 @@ export function PatientForm({
 
             <input
               type="email"
+              data-testid="email-paciente"
               {...register('email')}
             />
 
             {errors.email && (
-              <span className="field-error">
+              <span className="field-error" data-testid="email-paciente-msg-erro">
                 {errors.email.message}
               </span>
             )}
