@@ -58,6 +58,7 @@ export function PatientsPage() {
 
         <Link
           className="primary-link"
+          data-testid="new-patient"
           to="/pacientes/novo"
         >
           Novo paciente
@@ -71,6 +72,7 @@ export function PatientsPage() {
 
             <input
               value={nameFilter}
+              data-testid="patient-filter-name"
               onChange={(event) => {
                 setNameFilter(
                   event.target.value,
@@ -87,6 +89,7 @@ export function PatientsPage() {
 
             <select
               value={activeFilter}
+              data-testid="patient-filter-situation"
               onChange={(event) => {
                 setActiveFilter(
                   event.target.value,
@@ -95,15 +98,15 @@ export function PatientsPage() {
                 setPage(0);
               }}
             >
-              <option value="">
+              <option value="" data-testid="all">
                 Todos
               </option>
 
-              <option value="true">
+              <option value="true" data-testid="actives">
                 Ativos
               </option>
 
-              <option value="false">
+              <option value="false" data-testid="inactives">
                 Inativos
               </option>
             </select>
@@ -187,6 +190,7 @@ export function PatientsPage() {
           <div className="pagination">
             <button
               type="button"
+              data-testid="patient-previous"
               disabled={
                 patientsQuery.data.first
               }
@@ -215,6 +219,7 @@ export function PatientsPage() {
 
             <button
               type="button"
+              data-testid="patient-next"
               disabled={
                 patientsQuery.data.last
               }
