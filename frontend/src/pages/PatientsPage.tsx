@@ -58,7 +58,7 @@ export function PatientsPage() {
 
         <Link
           className="primary-link"
-          data-testid="new-patient"
+          data-testid="novo-paciente"
           to="/pacientes/novo"
         >
           Novo paciente
@@ -72,7 +72,7 @@ export function PatientsPage() {
 
             <input
               value={nameFilter}
-              data-testid="patient-filter-name"
+              data-testid="paciente-pesquisa-nome"
               onChange={(event) => {
                 setNameFilter(
                   event.target.value,
@@ -89,7 +89,7 @@ export function PatientsPage() {
 
             <select
               value={activeFilter}
-              data-testid="patient-filter-situation"
+              data-testid="paciente-situacao"
               onChange={(event) => {
                 setActiveFilter(
                   event.target.value,
@@ -98,15 +98,15 @@ export function PatientsPage() {
                 setPage(0);
               }}
             >
-              <option value="" data-testid="all">
+              <option value="" data-testid="todos">
                 Todos
               </option>
 
-              <option value="true" data-testid="actives">
+              <option value="true" data-testid="ativos">
                 Ativos
               </option>
 
-              <option value="false" data-testid="inactives">
+              <option value="false" data-testid="inativos">
                 Inativos
               </option>
             </select>
@@ -190,7 +190,7 @@ export function PatientsPage() {
           <div className="pagination">
             <button
               type="button"
-              data-testid="patient-previous"
+              data-testid="paciente-anterior"
               disabled={
                 patientsQuery.data.first
               }
@@ -219,7 +219,7 @@ export function PatientsPage() {
 
             <button
               type="button"
-              data-testid="patient-next"
+              data-testid="paciente-proximo"
               disabled={
                 patientsQuery.data.last
               }
