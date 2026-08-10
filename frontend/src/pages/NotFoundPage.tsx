@@ -11,7 +11,7 @@ export function NotFoundPage() {
         O endereço informado não existe ou foi alterado.
       </p>
 
-      <Link className="primary-link" to="/">
+      <Link className="primary-link" to="/" data-testid="voltar-inicio">
         Voltar para o início
       </Link>
     </div>

@@ -38,11 +38,11 @@ export function MainLayout() {
             className="main-navigation"
             aria-label="Navegação principal"
           >
-            <Link to="/">
+            <Link to="/" data-test-id="voltar-inicio">
               Início
             </Link>
 
-            <Link to="/pacientes">
+            <Link to="/pacientes" data-testid="pagina-pacientes">
               Pacientes
             </Link>
           </nav>
@@ -60,6 +60,7 @@ export function MainLayout() {
 
             <button
               type="button"
+              data-testid="sair"
               onClick={() =>
                 void handleLogout()
               }
