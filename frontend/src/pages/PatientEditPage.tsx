@@ -83,7 +83,7 @@ export function PatientEditPage() {
 
   return (
     <div className="page-container">
-      <Link
+      <Link data-testid="voltar-paciente"
         to={`/pacientes/${patientId}`}
       >
         ← Voltar para o paciente

@@ -346,7 +346,7 @@ export function PatientForm({
       <div className="form-actions">
         <button
           type="submit"
-          data-testid="cadastrar-paciente"
+          data-testid="salvar-paciente"
           disabled={isSubmitting}
         >
           {isSubmitting

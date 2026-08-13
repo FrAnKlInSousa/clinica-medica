@@ -75,7 +75,7 @@ export function PatientDetailsPage() {
 
   return (
     <div className="page-container">
-      <Link to="/pacientes">
+      <Link data-testid="voltar-paciente" to="/pacientes">
         ← Voltar para pacientes
       </Link>
 
@@ -96,6 +96,7 @@ export function PatientDetailsPage() {
 
         <div className="header-actions">
           <Link
+            data-testid="editar"
             className="secondary-link"
             to={`/pacientes/${patient.id}/editar`}
           >
@@ -104,6 +105,7 @@ export function PatientDetailsPage() {
 
           <button
             type="button"
+            data-testid="desativar"
             className={
               patient.ativo
                 ? 'danger-button'

@@ -51,7 +51,7 @@ export function PatientCreatePage() {
 
   return (
     <div className="page-container">
-      <Link to="/pacientes">
+      <Link data-testid="voltar-paciente" to="/pacientes">
         ← Voltar para pacientes
       </Link>
 
