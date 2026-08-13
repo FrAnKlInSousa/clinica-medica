@@ -167,6 +167,7 @@ export function PatientsPage() {
 
                       <td>
                         <Link
+                          data-testid={`visualisar-${patient.id}`}
                           to={`/pacientes/${patient.id}`}
                         >
                           Visualizar
