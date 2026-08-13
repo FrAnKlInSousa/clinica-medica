@@ -338,7 +338,7 @@ export function PatientForm({
 
         <textarea
           rows={5}
-          data-testid="observacoes"
+          data-testid="observacao"
           {...register('observacoes')}
         />
       </section>
