@@ -85,7 +85,7 @@ export function PatientDetailsPage() {
             Paciente #{patient.id}
           </span>
 
-          <h1>
+          <h1 data-testid="nome-completo">
             {patient.nomeCompleto}
           </h1>
 
@@ -126,21 +126,21 @@ export function PatientDetailsPage() {
 
           <dl>
             <dt>CPF</dt>
-            <dd>{patient.cpf}</dd>
+            <dd data-testid="cpf">{patient.cpf}</dd>
 
             <dt>Data de nascimento</dt>
-            <dd>
+            <dd data-testid="data-nascimento">
               {patient.dataNascimento}
             </dd>
 
             <dt>Sexo</dt>
-            <dd>
+            <dd data-testid="sexo">
               {patient.sexo ??
                 'Não informado'}
             </dd>
 
             <dt>Nome da mãe</dt>
-            <dd>
+            <dd data-testid="nome-mae">
               {patient.nomeMae ??
                 'Não informado'}
             </dd>
@@ -152,20 +152,20 @@ export function PatientDetailsPage() {
 
           <dl>
             <dt>Telefone</dt>
-            <dd>
+            <dd  data-testid="telefone">
               {patient.telefone}
             </dd>
 
             <dt>
               Telefone secundário
             </dt>
-            <dd>
+            <dd  data-testid="telefone-secundario">
               {patient.telefoneSecundario ??
                 'Não informado'}
             </dd>
 
             <dt>E-mail</dt>
-            <dd>
+            <dd data-testid="email-paciente">
               {patient.email ??
                 'Não informado'}
             </dd>
@@ -177,32 +177,32 @@ export function PatientDetailsPage() {
 
           <dl>
             <dt>CEP</dt>
-            <dd>
+            <dd data-testid="cep">
               {patient.endereco.cep ??
                 'Não informado'}
             </dd>
 
             <dt>Logradouro</dt>
-            <dd>
+            <dd data-testid="logradouro">
               {patient.endereco
                 .logradouro ??
                 'Não informado'}
             </dd>
 
             <dt>Número</dt>
-            <dd>
+            <dd data-testid="numero-endereco">
               {patient.endereco.numero ??
                 'Não informado'}
             </dd>
 
             <dt>Bairro</dt>
-            <dd>
+            <dd data-testid="bairro-endereco">
               {patient.endereco.bairro ??
                 'Não informado'}
             </dd>
 
             <dt>Cidade / UF</dt>
-            <dd>
+            <dd data-testid="cidade-uf">
               {patient.endereco.cidade ??
                 '-'}
               {' / '}
@@ -215,7 +215,7 @@ export function PatientDetailsPage() {
         <section className="details-card">
           <h2>Observações</h2>
 
-          <p>
+          <p data-testid="observacao">
             {patient.observacoes ??
               'Nenhuma observação cadastrada.'}
           </p>
